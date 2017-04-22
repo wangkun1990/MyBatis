@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.dao.DepartmentMapper">
+
+    <select id="getDepartmentById" resultType="com.learn.entity.Department">
+        select department_id as id, name
+        from dept
+        WHERE department_id = #{id}
+    </select>
+
+
+    <resultMap id="department2" type="com.learn.entity.Department2">
+        <id column="department_id" property="id"/>
+        <result column="name" property="name"/>
+        <!--column的值是department的主键-->
+        <collection property="students" select="com.learn.dao.StudentMapper.getStudent2ById"
+                    ofType="com.learn.entity.Student2" column="department_id">
+        </collection>
+    </resultMap>
+    <select id="getDepartment2ById" resultMap="department2">
+        select department_id, name
+        from dept
+        WHERE department_id = #{id}
+    </select>
+</mapper>
