@@ -29,4 +29,7 @@
         FROM student
     </select>
 
+    <delete id="delete">
+        DELETE FROM student where stu_id1 = #{id}
+    </delete>
 </mapper>

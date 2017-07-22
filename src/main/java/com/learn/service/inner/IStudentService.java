@@ -17,4 +17,14 @@ public interface IStudentService {
     public int insertStudent(Student student);
 
     public List<Student> getAllStudents();
+
+    public void insertAndDelete(Student student);
+
+    public void delete(int id);
+
+    public void insertAndDeleteWithoutTransaction(Student student);
+
+    public void insertAndDeleteWithTransaction(Student student);
+
+    public void insertAndDeleteWithTransaction1(Student student);
 }

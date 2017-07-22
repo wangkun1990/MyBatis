@@ -17,4 +17,6 @@ public interface StudentMapper {
     public int insertStudent(Student student);
 
     public List<Student> getAllStudents();
+
+    public void delete(int id);
 }

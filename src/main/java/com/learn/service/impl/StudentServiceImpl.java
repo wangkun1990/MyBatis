@@ -5,15 +5,17 @@ import com.learn.entity.Student;
 import com.learn.entity.Student2;
 import com.learn.service.inner.IStudentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * Created by wangkun on 2017/4/16.
- */
+
 @Service
 public class StudentServiceImpl implements IStudentService {
+
+    @Resource
+    private StudentServiceImpl self;
 
     @Resource
     private StudentMapper studentMapper;
@@ -36,5 +38,37 @@ public class StudentServiceImpl implements IStudentService {
     @Override
     public List<Student> getAllStudents() {
         return studentMapper.getAllStudents();
+    }
+
+    @Transactional
+    @Override
+    public void insertAndDelete(Student student) {
+        insertStudent(student);
+        delete(student.getId());
+    }
+
+    @Override
+    public void delete(int id) {
+        studentMapper.delete(id);
+    }
+
+    /**
+     * 有异常不会回滚
+     * @param student
+     */
+    @Override
+    public void insertAndDeleteWithoutTransaction(Student student) {
+        insertAndDelete(student);
+    }
+
+    @Transactional
+    @Override
+    public void insertAndDeleteWithTransaction(Student student) {
+        insertAndDelete(student);
+    }
+
+    @Override
+    public void insertAndDeleteWithTransaction1(Student student) {
+        self.insertAndDelete(student);
     }
 }

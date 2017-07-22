@@ -54,4 +54,48 @@ public class IStudentServiceTest {
         List<Student> students = studentService.getAllStudents();
         System.out.println("size = " + students.size());
     }
+
+    @Test
+    public void testInsertAndDelete() {
+        Student student = new Student();
+        Department department = new Department();
+        department.setId(2);
+        student.setDepartment(department);
+        student.setName("侯亮平");
+        student.setSex("0");
+        studentService.insertAndDelete(student);
+    }
+
+    @Test
+    public void testInsertAndDeleteWithoutTransaction() {
+        Student student = new Student();
+        Department department = new Department();
+        department.setId(2);
+        student.setDepartment(department);
+        student.setName("侯亮平");
+        student.setSex("0");
+        studentService.insertAndDeleteWithoutTransaction(student);
+    }
+
+    @Test
+    public void TestInsertAndDeleteWithTransaction() {
+        Student student = new Student();
+        Department department = new Department();
+        department.setId(2);
+        student.setDepartment(department);
+        student.setName("侯亮平");
+        student.setSex("0");
+        studentService.insertAndDeleteWithTransaction(student);
+    }
+
+    @Test
+    public void TestInsertAndDeleteWithTransaction1() {
+        Student student = new Student();
+        Department department = new Department();
+        department.setId(2);
+        student.setDepartment(department);
+        student.setName("侯亮平");
+        student.setSex("0");
+        studentService.insertAndDeleteWithTransaction1(student);
+    }
 }
