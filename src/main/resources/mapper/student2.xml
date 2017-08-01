@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.dao.StudentMapper2">
+
+    <resultMap id="student" type="student">
+        <id column="stu_id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex" typeHandler="com.learn.common.SexEnumHandler" />
+        <association column="dep_id" property="department" javaType="com.learn.entity.Department" fetchType="eager"
+                     select="com.learn.dao.DepartmentMapper.getDepartmentById">
+        </association>
+    </resultMap>
+
+
+    <insert id="addStudent" useGeneratedKeys="true" parameterType="com.learn.entity.Student" keyProperty="id">
+        INSERT INTO student(name, dep_id, sex) VALUES (#{name}, #{department.id}, #{sex})
+    </insert>
+
+
+    <delete id="deleteById">
+        DELETE FROM student where stu_id1 = #{id}
+    </delete>
+
+    <select id="getAllStudents2" resultType="student">
+        SELECT stu_id as id, name ,sex
+        FROM student
+    </select>
+</mapper>

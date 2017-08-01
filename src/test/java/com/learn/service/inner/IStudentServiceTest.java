@@ -98,4 +98,57 @@ public class IStudentServiceTest {
         student.setSex("0");
         studentService.insertAndDeleteWithTransaction1(student);
     }
+
+    @Test
+    public void testAddStudent() {
+        Student student = new Student();
+        Department department = new Department();
+        department.setId(2);
+        student.setDepartment(department);
+        student.setName("侯亮平");
+        student.setSex("0");
+        studentService.addStudent(student);
+    }
+
+    @Test
+    public void testAddStudent1() {
+        Student student = new Student();
+        Department department = new Department();
+        department.setId(2);
+        student.setDepartment(department);
+        student.setName("侯亮平");
+        student.setSex("0");
+        studentService.addStudent1(student);
+    }
+
+    @Test
+    public void testAddStudent2() {
+        Student student = new Student();
+        Department department = new Department();
+        department.setId(2);
+        student.setDepartment(department);
+        student.setName("侯亮平");
+        student.setSex("0");
+        studentService.addStudent2(student);
+    }
+
+    @Test
+    public void testAddStudent3() {
+        studentService.addStudent3(assembleStudent());
+    }
+
+    @Test
+    public void testAddStudent4() {
+        studentService.addStudent4(assembleStudent());
+    }
+
+    private Student assembleStudent() {
+        Student student = new Student();
+        Department department = new Department();
+        department.setId(2);
+        student.setDepartment(department);
+        student.setName("侯亮平");
+        student.setSex("0");
+        return student;
+    }
 }

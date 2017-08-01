@@ -28,4 +28,6 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
 	<import resource="spring-dao.xml"/>
+
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	</beans>
