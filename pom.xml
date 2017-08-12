@@ -136,7 +136,6 @@
         </dependency>
 
 
-
         <!-- mysql driven -->
         <dependency>
             <groupId>mysql</groupId>
@@ -195,6 +194,17 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.36</version>
         </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>5.5.1</version>
+        </dependency>
+
 
     </dependencies>
     <build>
