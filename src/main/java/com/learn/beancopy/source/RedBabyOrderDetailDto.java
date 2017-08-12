@@ -2,6 +2,7 @@ package com.learn.beancopy.source;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class RedBabyOrderDetailDto implements Serializable {
 
@@ -167,6 +168,10 @@ public class RedBabyOrderDetailDto implements Serializable {
      * 服务商品
      */
     private RedBabySrvCommdtyInfoDto redBabySrvCommdtyInfoDto;
+
+    private List<RedBabySrvCommdtyInfoDto> redBabySrvCommdtyInfoDtos;
+
+    private String age;
 
     public String getUuid() {
         return uuid;
@@ -432,6 +437,22 @@ public class RedBabyOrderDetailDto implements Serializable {
         this.redBabySrvCommdtyInfoDto = redBabySrvCommdtyInfoDto;
     }
 
+    public List<RedBabySrvCommdtyInfoDto> getRedBabySrvCommdtyInfoDtos() {
+        return redBabySrvCommdtyInfoDtos;
+    }
+
+    public void setRedBabySrvCommdtyInfoDtos(List<RedBabySrvCommdtyInfoDto> redBabySrvCommdtyInfoDtos) {
+        this.redBabySrvCommdtyInfoDtos = redBabySrvCommdtyInfoDtos;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "RedBabyOrderDetailDto{" +
@@ -468,6 +489,8 @@ public class RedBabyOrderDetailDto implements Serializable {
                 ", checkCode='" + checkCode + '\'' +
                 ", existSrvCmmdty='" + existSrvCmmdty + '\'' +
                 ", redBabySrvCommdtyInfoDto=" + redBabySrvCommdtyInfoDto +
+                ", redBabySrvCommdtyInfoDtos=" + redBabySrvCommdtyInfoDtos +
+                ", age='" + age + '\'' +
                 '}';
     }
 }
