@@ -204,6 +204,11 @@
             <artifactId>dozer</artifactId>
             <version>5.5.1</version>
         </dependency>
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.4.2</version>
+        </dependency>
 
 
     </dependencies>

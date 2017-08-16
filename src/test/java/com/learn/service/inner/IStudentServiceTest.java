@@ -1,5 +1,6 @@
 package com.learn.service.inner;
 
+import com.learn.dao.StudentMapper;
 import com.learn.entity.Department;
 import com.learn.entity.Department2;
 import com.learn.entity.Student;
@@ -7,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -151,4 +153,11 @@ public class IStudentServiceTest {
         student.setSex("0");
         return student;
     }
+
+    @Test
+    public void testAddStudent5() {
+        //studentService.addStudent5(assembleStudent());
+        studentService.getStudentById(1);
+    }
+
 }

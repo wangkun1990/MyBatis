@@ -5,6 +5,7 @@ import com.learn.entity.Student;
 import com.learn.entity.Student2;
 import com.learn.service.inner.IStudentService;
 import com.learn.service.inner.IStudentService2;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
@@ -25,6 +26,7 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public Student getStudentById(int id) {
+        System.err.println(StudentUtils.getStudent(id));
         return studentMapper.getStudentById(id);
     }
 
@@ -133,11 +135,37 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public void addStudent4(Student student) {
+        System.err.println("isAopProxy = " + AopUtils.isAopProxy(self));
+        System.err.println("isJdkDynamicProxy = " + AopUtils.isJdkDynamicProxy(self));
+        System.err.println("isCglibProxy = " + AopUtils.isCglibProxy(self));
+        System.err.println("isAopProxy = " + AopUtils.isAopProxy(studentService2));
+        System.err.println("isJdkDynamicProxy = " + AopUtils.isJdkDynamicProxy(studentService2));
+        System.err.println("isCglibProxy = " + AopUtils.isCglibProxy(studentService2));
         publicAddStu1(student);
     }
 
     public void publicAddStu1(Student student) {
         System.err.println(studentService2.getAllStudents2());
         self.insertAndDeleteInner(student);
+    }
+
+    @Override
+    public void addStudent5(Student student) {
+        self.addStuWithTransaction(student);
+    }
+
+    /**
+     * 事务不生效
+     * 1.默认修饰符
+     * 2.private
+     * 3.protect
+     * 4.final
+     * 5.static
+     * @param student
+     */
+    @Transactional
+    void addStuWithTransaction(Student student) {
+        studentMapper.insertStudent(student);
+        studentMapper.delete(student.getId());
     }
 }

@@ -27,4 +27,16 @@ public interface IStudentService {
     public void insertAndDeleteWithTransaction(Student student);
 
     public void insertAndDeleteWithTransaction1(Student student);
+
+    public void addStudent(Student student);
+
+    public void addStudent1(Student student);
+
+    public void addStudent2(Student student);
+
+    public void addStudent3(Student student);
+
+    public void addStudent4(Student student);
+
+    public void addStudent5(Student student);
 }
