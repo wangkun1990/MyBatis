@@ -13,7 +13,7 @@ public class CharacterHelper {
             String filter = StringUtils.EMPTY;
             try {
                 matchRule = "\\p{Punct}\\s*|\t*|\r*|\n*";
-                filter = "\\u4d67\\ud8\\u2022\\uba\\ua0\\u5d3\\u2006\\u30fb\\uf89\\uff1f\\u3f\\u27\\u2c\\uff0c\\u22\\u2018\\u200d\\u2005\\u2122\\uae\\ucd\\u3773\\uadc0\\uc560\\ub791\\u3b4d\\u4896\\u2795\\u436d\\u419f\\u34cb";
+                filter = "\\u4d67\\ud8\\u2022\\uba\\ua0\\u5d3\\u2006\\u30fb\\uf89\\uff1f\\u3f\\u27\\u2c\\uff0c\\u22\\u2018\\u200d\\u2005\\u2122\\uae\\ucd\\u3773\\uadc0\\uc560\\ub791\\u3b4d\\u4896\\u2795\\u436d\\u419f\\u34cb\\ub9e4\\u4553\\u40a3";
                 // 从SCM获取过滤的乱码字符 character.filter
                 if (StringUtils.isNotBlank(filter)) {
                     return getUnioncodeCharacterFilter(filter, characters, matchRule);
@@ -133,5 +133,13 @@ public class CharacterHelper {
             return true;
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(CharacterHelper.filterSpecialCharacters("蒂佳婷去黑头毛孔细致贴套装2매*4SET"));
+        System.out.println(CharacterHelper.filterSpecialCharacters("施䂣"));
+        System.out.println(CharacterHelper.filterSpecialCharacters("㓋先生"));
+        System.out.println(CharacterHelper.filterSpecialCharacters("䕓善棣"));
+
     }
 }
