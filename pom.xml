@@ -209,6 +209,11 @@
             <artifactId>orika-core</artifactId>
             <version>1.4.2</version>
         </dependency>
+        <dependency>
+                <groupId>com.googlecode.jmapper-framework</groupId>
+                <artifactId>jmapper-core</artifactId>
+                <version>1.6.1.CR2</version>
+        </dependency>
 
 
     </dependencies>
