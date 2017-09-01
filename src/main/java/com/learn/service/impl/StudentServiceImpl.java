@@ -78,6 +78,10 @@ public class StudentServiceImpl implements IStudentService {
         self.insertAndDelete(student);
     }
 
+    /**
+     * 事务生效
+     * @param student
+     */
     @Override
     public void addStudent(Student student) {
         addStu(student);
@@ -105,7 +109,7 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     /**
-     * 没有事务
+     * 事务不生效
      * @param student
      */
     @Override
