@@ -4,6 +4,7 @@ import com.learn.dao.StudentMapper;
 import com.learn.entity.Department;
 import com.learn.entity.Department2;
 import com.learn.entity.Student;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -156,8 +157,13 @@ public class IStudentServiceTest {
 
     @Test
     public void testAddStudent5() {
-        //studentService.addStudent5(assembleStudent());
+        studentService.addStudent5(assembleStudent());
         studentService.getStudentById(1);
+    }
+
+    @Test
+    public void testAddStudent6() {
+        studentService.addStudent6(assembleStudent());
     }
 
 }

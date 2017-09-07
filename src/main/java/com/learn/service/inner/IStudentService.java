@@ -39,4 +39,8 @@ public interface IStudentService {
     public void addStudent4(Student student);
 
     public void addStudent5(Student student);
+
+    public void addStudent6(Student student);
+
+    public void addStudent7(Student student);
 }
