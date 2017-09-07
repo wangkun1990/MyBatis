@@ -29,14 +29,7 @@ public class IStudentServiceTest {
 
     @Test
     public void testInsertStudent() {
-        Student student = new Student();
-        Department department = new Department();
-        department.setId(2);
-        student.setDepartment(department);
-        student.setName("侯亮平");
-        student.setSex("0");
-        int result = studentService.insertStudent(student);
-        System.err.println("result = " + student.getId());
+        int result = studentService.insertStudent(assembleStudent());
     }
 
     @Test
@@ -60,79 +53,37 @@ public class IStudentServiceTest {
 
     @Test
     public void testInsertAndDelete() {
-        Student student = new Student();
-        Department department = new Department();
-        department.setId(2);
-        student.setDepartment(department);
-        student.setName("侯亮平");
-        student.setSex("0");
-        studentService.insertAndDelete(student);
+        studentService.insertAndDelete(assembleStudent());
     }
 
     @Test
     public void testInsertAndDeleteWithoutTransaction() {
-        Student student = new Student();
-        Department department = new Department();
-        department.setId(2);
-        student.setDepartment(department);
-        student.setName("侯亮平");
-        student.setSex("0");
-        studentService.insertAndDeleteWithoutTransaction(student);
+        studentService.insertAndDeleteWithoutTransaction(assembleStudent());
     }
 
     @Test
     public void TestInsertAndDeleteWithTransaction() {
-        Student student = new Student();
-        Department department = new Department();
-        department.setId(2);
-        student.setDepartment(department);
-        student.setName("侯亮平");
-        student.setSex("0");
-        studentService.insertAndDeleteWithTransaction(student);
+        studentService.insertAndDeleteWithTransaction(assembleStudent());
     }
 
     @Test
     public void TestInsertAndDeleteWithTransaction1() {
-        Student student = new Student();
-        Department department = new Department();
-        department.setId(2);
-        student.setDepartment(department);
-        student.setName("侯亮平");
-        student.setSex("0");
-        studentService.insertAndDeleteWithTransaction1(student);
+        studentService.insertAndDeleteWithTransaction1(assembleStudent());
     }
 
     @Test
     public void testAddStudent() {
-        Student student = new Student();
-        Department department = new Department();
-        department.setId(2);
-        student.setDepartment(department);
-        student.setName("侯亮平");
-        student.setSex("0");
-        studentService.addStudent(student);
+        studentService.addStudent(assembleStudent());
     }
 
     @Test
     public void testAddStudent1() {
-        Student student = new Student();
-        Department department = new Department();
-        department.setId(2);
-        student.setDepartment(department);
-        student.setName("侯亮平");
-        student.setSex("0");
-        studentService.addStudent1(student);
+        studentService.addStudent1(assembleStudent());
     }
 
     @Test
     public void testAddStudent2() {
-        Student student = new Student();
-        Department department = new Department();
-        department.setId(2);
-        student.setDepartment(department);
-        student.setName("侯亮平");
-        student.setSex("0");
-        studentService.addStudent2(student);
+        studentService.addStudent2(assembleStudent());
     }
 
     @Test
