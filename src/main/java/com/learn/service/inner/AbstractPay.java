@@ -9,27 +9,27 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 
 @Component
-public abstract class AbstractPay {
+public abstract class AbstractPay<T> {
 
     @Resource
     private StudentMapper studentMapper;
 
-    public abstract void beforeExecute();
+    public abstract T beforeExecute(T t);
 
-    public final void execute(Student student) {
-        this.beforeExecute();
+    public final void execute(Student student, T t) {
+        this.beforeExecute(t);
 
         insertAndDelete(student);
 
-        this.afterExecute();
+        this.afterExecute(t);
     }
 
-    public abstract void afterExecute();
+    public abstract void afterExecute(T t);
 
 
     @Transactional
     public void insertAndDelete(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.delete(student.getId());
+        //studentMapper.delete(student.getId());
     }
 }

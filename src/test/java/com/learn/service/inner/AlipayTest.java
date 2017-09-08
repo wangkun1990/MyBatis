@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 @ContextConfiguration(locations = {"classpath:spring/spring-service.xml"})
 public class AlipayTest {
 
-    @Autowired
+    @Resource(name = "umspay")
     private AbstractPay pay;
 
     @Test
@@ -26,6 +26,6 @@ public class AlipayTest {
         student.setDepartment(department);
         student.setName("侯亮平");
         student.setSex("0");
-        pay.execute(student);
+        pay.execute(student, student);
     }
 }
