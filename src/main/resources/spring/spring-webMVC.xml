@@ -21,6 +21,4 @@
 								expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 	</context:component-scan>
 
-
-
 </beans>
