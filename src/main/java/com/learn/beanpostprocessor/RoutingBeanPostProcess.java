@@ -47,7 +47,9 @@ public class RoutingBeanPostProcess implements BeanPostProcessor {
     private void handleRoutingInjected(Field field, Object bean, Class type) throws IllegalAccessException {
         Map<String, Object> candidates = this.applicationContext.getBeansOfType(type);
         field.setAccessible(true);
-        if (candidates.size() == 1) {
+        if (candidates.size() == 0) {
+            throw new IllegalAccessException("find no one beans for type:" + type);
+        } else if (candidates.size() == 1) {
             field.set(bean, candidates.values().iterator().next());
         } else if (candidates.size() == 2) {
             Object proxy = RoutingBeanProxyFactory.createProxy(type, candidates);

@@ -188,4 +188,11 @@ public class StudentServiceImpl implements IStudentService {
         studentMapper.insertStudent(student);
         studentMapper.delete(student.getId());
     }
+
+    @Transactional
+    @Override
+    public void addAndDel(Student student) {
+        studentMapper.insertStudent(student);
+        studentMapper.delete(student.getId());
+    }
 }
