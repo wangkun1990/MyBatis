@@ -1,11 +1,12 @@
 package com.learn.beanpostprocessor.service;
 
 import com.learn.beanpostprocessor.annotation.RoutingSwitch;
+import com.learn.beanpostprocessor.routingenum.RoutingEnum;
 
-@RoutingSwitch("hello.switch")
+//@RoutingSwitch("aa")
 public interface HelloAnnotationService {
 
-    @RoutingSwitch("A")
+    @RoutingSwitch(RoutingEnum.B)
     void sayHello();
 
     void sayHi();

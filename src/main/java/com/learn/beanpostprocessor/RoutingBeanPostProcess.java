@@ -23,9 +23,7 @@ public class RoutingBeanPostProcess implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-
         Class clazz = bean.getClass();
-
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             if (field.isAnnotationPresent(RoutingInjected.class)) {
