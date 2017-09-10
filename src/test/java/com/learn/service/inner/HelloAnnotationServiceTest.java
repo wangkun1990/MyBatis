@@ -15,7 +15,12 @@ public class HelloAnnotationServiceTest {
     private HelloAnnotationService helloAnnotationService;
 
     @Test
-    public void test() {
+    public void testSayHello() {
         helloAnnotationService.sayHello();
+    }
+
+    @Test
+    public void testSayHi() {
+        helloAnnotationService.sayHi();
     }
 }

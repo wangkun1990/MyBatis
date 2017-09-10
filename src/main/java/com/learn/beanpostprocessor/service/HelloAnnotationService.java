@@ -6,7 +6,7 @@ import com.learn.beanpostprocessor.routingenum.RoutingEnum;
 //@RoutingSwitch("aa")
 public interface HelloAnnotationService {
 
-    @RoutingSwitch(RoutingEnum.B)
+    @RoutingSwitch(RoutingEnum.A)
     void sayHello();
 
     void sayHi();

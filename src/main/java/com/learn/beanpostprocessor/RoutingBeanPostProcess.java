@@ -7,9 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import javax.servlet.ServletContext;
 import java.lang.reflect.Field;
 import java.util.Map;
 
+/**
+ * 需要在spring mvc配置文件中添加bean
+ */
 @Component
 public class RoutingBeanPostProcess implements BeanPostProcessor {
 
@@ -46,6 +53,10 @@ public class RoutingBeanPostProcess implements BeanPostProcessor {
 
     private void handleRoutingInjected(Field field, Object bean, Class type) throws IllegalAccessException {
         Map<String, Object> candidates = this.applicationContext.getBeansOfType(type);
+        WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+        if (webApplicationContext != null) {
+            candidates = webApplicationContext.getBeansOfType(type);
+        }
         field.setAccessible(true);
         if (candidates.size() == 0) {
             throw new IllegalAccessException("find no one beans for type:" + type);

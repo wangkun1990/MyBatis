@@ -2,12 +2,12 @@ package com.learn.beanpostprocessor.controller;
 
 import com.learn.beanpostprocessor.annotation.RoutingInjected;
 import com.learn.beanpostprocessor.service.HelloAnnotationService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RequestMapping
-@Controller
+@RestController
 public class HelloAnnotationController {
 
     @RoutingInjected
@@ -15,8 +15,9 @@ public class HelloAnnotationController {
 
 
     @RequestMapping("/hello")
-    public void sayHello() {
+    public String sayHello() {
         helloService.sayHello();
+        return "hello";
     }
 
     @RequestMapping("/hi")
