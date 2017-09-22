@@ -12,6 +12,17 @@
     </param-value>
   </context-param>
 
+  <context-param>
+    <param-name>driver</param-name>
+    <param-value>com.mysql.jdbc</param-value>
+  </context-param>
+
+
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -44,13 +55,31 @@
     <servlet-name>webMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>secondServlet</servlet-name>
+    <servlet-class>com.learn.servlet.SecondServlet</servlet-class>
+    <init-param>
+      <param-name>driver</param-name>
+      <param-value>com.mysql.jdbc.Driver</param-value>
+    </init-param>
+    <init-param>
+      <param-name>url</param-name>
+      <param-value>jdbc:mysql://localhost:3306/javaee</param-value>
+    </init-param>
+    <!--只接受一个整数值，这个整型值越小，servlet就越优先实例化-->
+    <load-on-startup>1</load-on-startup>
+
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>secondServlet</servlet-name>
+    <url-pattern>/secondServlet</url-pattern>
+  </servlet-mapping>
 
 
 
 
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
+
 
 
   <!-- <listener>
