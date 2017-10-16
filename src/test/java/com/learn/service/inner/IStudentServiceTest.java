@@ -117,4 +117,8 @@ public class IStudentServiceTest {
         studentService.addStudent6(assembleStudent());
     }
 
+    @Test
+    public void testAddAndDeleteWithoutTransaction() {
+        studentService.addAndDeleteWithoutTransaction(assembleStudent());
+    }
 }
