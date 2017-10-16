@@ -195,4 +195,18 @@ public class StudentServiceImpl implements IStudentService {
         studentMapper.insertStudent(student);
         studentMapper.delete(student.getId());
     }
+
+    /**
+     * 事务生效
+     * @param student
+     */
+    public void addAndDeleteWithoutTransaction(Student student) {
+        self.addAndDelete(student);
+    }
+
+    @Transactional
+    public void addAndDelete(Student student) {
+        studentService2.addStudent(student);
+        studentMapper.delete(student.getId());
+    }
 }
