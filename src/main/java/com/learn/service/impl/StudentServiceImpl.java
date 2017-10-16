@@ -206,7 +206,11 @@ public class StudentServiceImpl implements IStudentService {
 
     @Transactional
     public void addAndDelete(Student student) {
-        studentService2.addStudent(student);
+        addWithPrivate(student);
         studentMapper.delete(student.getId());
+    }
+
+    private void addWithPrivate(Student student) {
+        studentService2.addStudent(student);
     }
 }
