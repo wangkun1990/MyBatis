@@ -13,7 +13,7 @@ public class CharacterHelper {
             String filter = StringUtils.EMPTY;
             try {
                 matchRule = "\\p{Punct}\\s*|\t*|\r*|\n*";
-                filter = "\\u4d67\\ud8\\u2022\\uba\\ua0\\u5d3\\u2006\\u30fb\\uf89\\uff1f\\u3f\\u27\\u2c\\uff0c\\u22\\u2018\\u200d\\u2005\\u2122\\uae\\ucd\\u3773\\uadc0\\uc560\\ub791\\u3b4d\\u4896\\u2795\\u436d\\u419f\\u34cb\\ub9e4\\u4553\\u40a3\\u3566";
+                filter = "\\u4d67\\ud8\\u2022\\uba\\ua0\\u5d3\\u2006\\u30fb\\uf89\\uff1f\\u3f\\u27\\u2c\\uff0c\\u22\\u2018\\u200d\\u2005\\u2122\\uae\\ucd\\u3773\\uadc0\\uc560\\ub791\\u3b4d\\u4896\\u2795\\u436d\\u419f\\u34cb\\ub9e4\\u4553\\u40a3\\u3566\\u302b\\u202c";
                 // 从SCM获取过滤的乱码字符 character.filter
                 if (StringUtils.isNotBlank(filter)) {
                     return getUnioncodeCharacterFilter(filter, characters, matchRule);
@@ -141,6 +141,8 @@ public class CharacterHelper {
         System.out.println(CharacterHelper.filterSpecialCharacters("㓋先生"));
         System.out.println(CharacterHelper.filterSpecialCharacters("䕓善棣"));
         System.out.println(CharacterHelper.filterSpecialCharacters("㕦年军"));
+        System.out.println(CharacterHelper.filterSpecialCharacters("努比(Nuby)400ml两用3Dtritan360〫吸管杯（颜色图案随机）10457（颜色图案随机）"));
 
+        System.out.println(CharacterHelper.filterSpecialCharacters("18908942632\u202C"));
     }
 }
