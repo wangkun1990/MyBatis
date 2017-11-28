@@ -1,9 +1,11 @@
 package com.learn.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by wangkun on 2017/4/16.
  */
-public class Department {
+public class Department implements Serializable {
 
     private int id;
 
