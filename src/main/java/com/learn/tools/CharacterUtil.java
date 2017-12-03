@@ -5,6 +5,10 @@ import java.io.UnsupportedEncodingException;
 
 public class CharacterUtil {
 
+    private CharacterUtil() {
+
+    }
+
     public final static String EMPTY = "";
 
 
