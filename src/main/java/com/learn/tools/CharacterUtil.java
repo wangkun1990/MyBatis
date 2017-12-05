@@ -6,7 +6,6 @@ import java.io.UnsupportedEncodingException;
 public class CharacterUtil {
 
     private CharacterUtil() {
-
     }
 
     public final static String EMPTY = "";
@@ -25,6 +24,9 @@ public class CharacterUtil {
      * @return
      */
     public static boolean isStringValidInCharset(String s, String charsetName) {
+        if (s == null || EMPTY.equals(s)) {
+            return false;
+        }
         if (charsetName == null) {
             throw new NullPointerException("charsetName");
         }
@@ -41,7 +43,32 @@ public class CharacterUtil {
         }
     }
 
-    public static String filterSpecicalCharacter(String str) {
+    /**
+     * 过滤掉非指定字符集编码的字符
+     * @param str
+     * @param charsetName
+     * @return
+     */
+    public static String filterSpecicalCharacter(String str, String charsetName) {
+        if (str == null || EMPTY.equals(str)) {
+            return EMPTY;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0, len = str.length(); i < len; i++) {
+            char c = str.charAt(i);
+            if (isStringValidInCharset(String.valueOf(c), charsetName)) {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 过滤非GBK字符集中的字符
+     * @param str
+     * @return
+     */
+    public static String filterGbkSpecialCharacter(String str) {
         if (str == null || EMPTY.equals(str)) {
             return EMPTY;
         }
@@ -56,6 +83,9 @@ public class CharacterUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(filterSpecicalCharacter("䵧Ø㓋매䕓䂣㕦㬢䓪㭜䘵䩐0〫㛙㛤䶮䣃䔲㴝㫞㢷中文hello☆"));
+        System.out.println(filterGbkSpecialCharacter("Ø•º ד ・ྉ？?',，\"‘\u200D ™®Í㝳귀애랑㭍䢖➕䍭䆟䵧㓋매䕓䂣㕦㬢䓪㭜䘵䩐㛙㛤䶮䣃䔲㴝㫞㢷\u202C〫䔲㢮"));
+        System.out.println(filterGbkSpecialCharacter("43º红星二锅头150ml"));
+        System.out.println(filterGbkSpecialCharacter("米时代®柔系大米香皂"));
+        System.out.println(filterGbkSpecialCharacter("䏜"));
     }
 }
