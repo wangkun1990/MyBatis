@@ -1,5 +1,6 @@
 package com.learn.tools;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.learn.entity.RefundRequest;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -14,6 +15,24 @@ public class MapUtil {
     }
 
     /**
+     *
+     * @param params key1=value1&key2=value2&key3=value3
+     * @return
+     */
+    public static Map<String, String> string2Map(String params) {
+        Map<String, String> map = new TreeMap<>();
+        if (isNotBlank(params)) {
+            String[] keyValue = params.split("&");
+            for (String str : keyValue) {
+                String[] keyAndValue = str.split("=");
+                map.put(keyAndValue[0], keyValue[1]);
+            }
+        }
+
+        return map;
+    }
+
+    /**
      * 对象转换成map,如果对象值为空，不加入到map中，map中的key按字典升序排序
      * @param object
      * @return
@@ -24,11 +43,18 @@ public class MapUtil {
         try {
             for (Field field : fields) {
                 field.setAccessible(true);
+                JSONField jsonField = field.getAnnotation(JSONField.class);
+                String key;
+                if (jsonField != null) {
+                    key = jsonField.name();
+                } else {
+                    key = field.getName();
+                }
                 Object result = field.get(object);
                 if (result instanceof String) {
                     String str = (String) result;
                     if (isNotBlank(str)) {
-                        treeMap.put(field.getName(), str);
+                        treeMap.put(key, str);
                     }
                 }
             }
@@ -46,8 +72,8 @@ public class MapUtil {
     public static String map2String(Map<String, String> map) {
         Map<String, String> treeMap = new TreeMap<>(map);
 
-        StringBuffer result = new StringBuffer();
-        for (Map.Entry<String, String> entry : map.entrySet()) {
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<String, String> entry : treeMap.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
             result.append(key).append("=").append(value).append("&");
