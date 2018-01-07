@@ -25,7 +25,7 @@ public class MapUtil {
             String[] keyValue = params.split("&");
             for (String str : keyValue) {
                 String[] keyAndValue = str.split("=");
-                map.put(keyAndValue[0], keyValue[1]);
+                map.put(keyAndValue[0], keyAndValue[1]);
             }
         }
 
