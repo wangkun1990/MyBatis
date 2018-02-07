@@ -13,13 +13,14 @@ public class CharacterHelper {
             String filter = StringUtils.EMPTY;
             try {
                 matchRule = "\\p{Punct}\\s*|\t*|\r*|\n*";
-                filter = "\\u4d67\\ud8\\u2022\\uba\\ua0\\u5d3\\u2006\\u30fb\\uf89\\uff1f\\u3f\\u27\\u2c\\uff0c\\u22\\u2018\\u200d\\u2005\\u2122\\uae\\ucd\\u3773\\uadc0\\uc560\\ub791\\u3b4d\\u4896\\u2795\\u436d\\u419f\\u34cb\\ub9e4\\u4553\\u40a3\\u3566\\u302b\\u202c";
+                filter = "\\ud8\\u2022\\uba\\ua0\\u5d3\\u2006\\u30fb\\uf89\\uff1f\\u3f\\u27\\u2c\\uff0c\\u22\\u2018\\u200d\\u2005\\u2122\\uae\\ucd\\u3773\\uadc0\\uc560\\ub791\\u3b4d\\u4896\\u2795\\u436d\\u419f\\u4d67\\u34cb\\ub9e4\\u4553\\u40a3\\u3566\\u3b22\\u44ea\\u3b5c\\u4635\\u4a50\\u36d9\\u36e4\\u4dae\\u48c3\\u4532\\u3d1d\\u3ade\\u38b7\\u202c\\u302b\\u4532\\u38ae\\u43dc\\u3d93\\u3b72\\u3d6a\\u4cd2\\u3aea\\u3d19\\u200c";
                 // 从SCM获取过滤的乱码字符 character.filter
                 if (StringUtils.isNotBlank(filter)) {
                     return getUnioncodeCharacterFilter(filter, characters, matchRule);
                 }
             } catch (Exception e) {
                 // 当出现异常时忽略异常
+                System.err.println(e);
             }
             return characters;
         } else {
@@ -144,5 +145,12 @@ public class CharacterHelper {
         System.out.println(CharacterHelper.filterSpecialCharacters("努比(Nuby)400ml两用3Dtritan360〫吸管杯（颜色图案随机）10457（颜色图案随机）"));
 
         System.out.println(CharacterHelper.filterSpecialCharacters("18908942632\u202C"));
+        System.out.println(filterSpecialCharacters("43º红星二锅头150ml"));
+        System.out.println(filterSpecialCharacters("米时代®柔系大米香皂"));
+        System.out.println(filterSpecialCharacters("䏜"));
+        System.out.println(filterSpecialCharacters("㶓"));
+        System.out.println(filterSpecialCharacters("照烧鸡排饭            "));
+
+        System.out.println(filterSpecialCharacters("老边区\u200C养老中心"));
     }
 }

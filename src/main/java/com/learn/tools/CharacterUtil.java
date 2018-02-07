@@ -86,6 +86,23 @@ public class CharacterUtil {
         System.out.println(filterGbkSpecialCharacter("Ø•º ד ・ྉ？?',，\"‘\u200D ™®Í㝳귀애랑㭍䢖➕䍭䆟䵧㓋매䕓䂣㕦㬢䓪㭜䘵䩐㛙㛤䶮䣃䔲㴝㫞㢷\u202C〫䔲㢮"));
         System.out.println(filterGbkSpecialCharacter("43º红星二锅头150ml"));
         System.out.println(filterGbkSpecialCharacter("米时代®柔系大米香皂"));
+        System.out.println(filterGbkSpecialCharacter("18908942632\u202C"));
         System.out.println(filterGbkSpecialCharacter("䏜"));
+        System.out.println(filterGbkSpecialCharacter("㶓"));
+        System.out.println(filterGbkSpecialCharacter("䃼"));
+        System.out.println(filterGbkSpecialCharacter("㵪"));
+        System.out.println(filterGbkSpecialCharacter("䳒"));
+        System.out.println(filterSpecicalCharacter("䳒", "utf-8"));
+
+        System.out.println(filterGbkSpecialCharacter("老边区\u200C养老中心"));
+        System.out.println(filterGbkSpecialCharacter("䧏"));
+        System.out.println(filterGbkSpecialCharacter("梁䂂"));
+        System.out.println(filterGbkSpecialCharacter("䧻青平"));
+        System.out.println(filterGbkSpecialCharacter("北京凯诺奥森实业\u206E有限公司"));
+        System.out.println(filterGbkSpecialCharacter("䅇袁园"));
+        System.out.println(filterGbkSpecialCharacter("梁䂂"));
+        System.out.println(filterGbkSpecialCharacter("崔㚞国"));
+        System.out.println(filterGbkSpecialCharacter("天•城上城"));
+        System.out.println(filterGbkSpecialCharacter("0; 陇海路与华山路交叉口向西51米路南工商;郑州市;中原区;主城区"));
     }
 }
