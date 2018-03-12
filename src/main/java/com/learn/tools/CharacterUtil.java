@@ -104,5 +104,11 @@ public class CharacterUtil {
         System.out.println(filterGbkSpecialCharacter("崔㚞国"));
         System.out.println(filterGbkSpecialCharacter("天•城上城"));
         System.out.println(filterGbkSpecialCharacter("0; 陇海路与华山路交叉口向西51米路南工商;郑州市;中原区;主城区"));
+        System.out.println(filterGbkSpecialCharacter("intermail单反相机包 SLR-618 蓝"));
+        System.out.println(filterGbkSpecialCharacter("熊䃼妮"));
+        System.out.println(filterGbkSpecialCharacter("张䜭"));
+        System.out.println(filterGbkSpecialCharacter("路店4-D−7号"));
+        System.out.println(filterGbkSpecialCharacter("沈春㬌"));
+        System.out.println(filterGbkSpecialCharacter("中山市泰龙塑㬵制品有限公司"));
     }
 }
