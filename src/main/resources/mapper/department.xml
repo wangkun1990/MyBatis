@@ -22,4 +22,8 @@
         from dept
         WHERE department_id = #{id}
     </select>
+
+    <insert id="insertDepartment" parameterType="com.learn.entity.Department" keyProperty="id" useGeneratedKeys="true">
+        insert into dept(department_id, name) values (#{id}, #{name, typeHandler = com.learn.mybatis.handler.StringNull2EmptyHandler})
+    </insert>
 </mapper>

@@ -12,4 +12,10 @@ public interface DepartmentMapper {
 
 
     public Department2 getDepartment2ById(int id);
+
+    /**
+     * @param department
+     * @return
+     */
+    int insertDepartment(Department department);
 }

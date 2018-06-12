@@ -11,4 +11,6 @@ public interface IDepartmentService {
     public Department getDepartmentById(int id);
 
     public Department2 getDepartment2ById(int id);
+
+    int insertDepartment(Department department);
 }
