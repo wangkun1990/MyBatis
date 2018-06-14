@@ -8,10 +8,10 @@ import com.learn.entity.Department2;
  */
 public interface DepartmentMapper {
 
-    public Department getDepartmentById(int id);
+    Department getDepartmentById(int id);
 
 
-    public Department2 getDepartment2ById(int id);
+    Department2 getDepartment2ById(int id);
 
     /**
      * @param department
