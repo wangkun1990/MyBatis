@@ -1,10 +1,12 @@
 package com.learn.entity;
 
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
  * Created by wangkun on 2017/4/16.
  */
+@Table(name = "dept")
 public class Department implements Serializable {
 
     private int id;
