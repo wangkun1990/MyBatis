@@ -12,9 +12,9 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.lang.reflect.Field;
 
-public class BaseUpdateProvice {
+public class BaseUpdateProvide {
 
-    private static Logger logger = LoggerFactory.getLogger(BaseUpdateProvice.class);
+    private static Logger logger = LoggerFactory.getLogger(BaseUpdateProvide.class);
 
     public static String updateAllColumnsByPrimary() {
         DaoInterfaceBean daoInterfaceInfo = DaoMethodInterceptor.getDaoInterfaceInfo();

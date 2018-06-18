@@ -1,6 +1,6 @@
 package com.learn.mybatis.tool;
 
-import com.learn.mybatis.provide.BaseUpdateProvice;
+import com.learn.mybatis.provide.BaseUpdateProvide;
 import org.apache.ibatis.annotations.UpdateProvider;
 
 public interface BaseUpdateMapper<T> {
@@ -10,7 +10,7 @@ public interface BaseUpdateMapper<T> {
      * @param t
      * @return
      */
-    @UpdateProvider(type = BaseUpdateProvice.class, method = "updateAllColumnsByPrimary")
+    @UpdateProvider(type = BaseUpdateProvide.class, method = "updateAllColumnsByPrimary")
     int updateAllColumnsByPrimary(T t);
 
     /**
@@ -18,6 +18,6 @@ public interface BaseUpdateMapper<T> {
      * @param t
      * @return
      */
-    @UpdateProvider(type = BaseUpdateProvice.class, method = "updateNotNullColumnsByPrimary")
+    @UpdateProvider(type = BaseUpdateProvide.class, method = "updateNotNullColumnsByPrimary")
     int updateNotNullColumnsByPrimary(T t);
 }

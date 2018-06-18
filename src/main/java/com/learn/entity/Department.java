@@ -16,11 +16,11 @@ public class Department implements Serializable {
 
     @Column(name = "department_id")
     @Id
-    private int id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    private String sex;
+    //private String sex;
 
 }

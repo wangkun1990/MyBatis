@@ -9,5 +9,8 @@ import java.util.List;
 public interface BaseInsertMapper<T> {
 
     @InsertProvider(type = BaseInsertProvide.class, method = "batchInsert")
-    int batchInsert(@Param("params") List<T> t);
+    int batchInsert(List<T> t);
+
+    @InsertProvider(type = BaseInsertProvide.class, method = "insert")
+    int insert(T t);
 }
