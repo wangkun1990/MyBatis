@@ -1,7 +1,10 @@
 package com.learn.mybatis.bean;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class DynamicEntityBean {
 
     /**
@@ -13,4 +16,24 @@ public class DynamicEntityBean {
      * 数据库对应字段
      */
     private List<String> columns;
+
+    /**
+     * 要查询的数据库列
+     */
+    private String selectColumns;
+
+    /**
+     * 表名
+     */
+    private String tableName;
+
+    /**
+     * 数据库主键字段
+     */
+    private String primaryKeyColumn;
+
+    /**
+     * java对象主键字段
+     */
+    private String primaryKeyField;
 }

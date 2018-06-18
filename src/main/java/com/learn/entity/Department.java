@@ -1,5 +1,9 @@
 package com.learn.entity;
 
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -7,34 +11,16 @@ import java.io.Serializable;
  * Created by wangkun on 2017/4/16.
  */
 @Table(name = "dept")
+@Data
 public class Department implements Serializable {
 
+    @Column(name = "department_id")
+    @Id
     private int id;
 
+    @Column(name = "name")
     private String name;
 
-    public int getId() {
-        return id;
-    }
+    private String sex;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Department{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

@@ -1,17 +1,23 @@
 package com.learn.mybatis.interceptor;
 
+import com.alibaba.fastjson.JSON;
 import com.learn.mybatis.bean.DaoInterfaceBean;
+import com.learn.mybatis.bean.DynamicEntityBean;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * dao方法拦截器
@@ -20,8 +26,15 @@ import java.lang.reflect.Type;
 @Aspect
 public class DaoMethodInterceptor {
 
+    private Logger logger = LoggerFactory.getLogger(DaoMethodInterceptor.class);
+
+    private DaoMethodInterceptor() {
+
+    }
 
     private static ThreadLocal<DaoInterfaceBean> daoInterfaceInfoThreadLocal = new ThreadLocal<>();
+
+    private static volatile Map<String, DynamicEntityBean> dynamicEntityBeanMap = new HashMap<>();
 
     @Pointcut(value = "execution(* com.learn.dao.*.*(..))")
     private void daoMethod() {
@@ -43,7 +56,6 @@ public class DaoMethodInterceptor {
         System.out.println("name space = " + mapperClazz.getName());
 
 
-
         Type[] genType = mapperClazz.getGenericInterfaces();
 
 
@@ -51,6 +63,7 @@ public class DaoMethodInterceptor {
         Type[] genericType = ((ParameterizedType) genType[0]).getActualTypeArguments();
         Class<?> genericClazz = (Class<?>) genericType[0];
         System.out.println("泛型类型 = " + genericClazz.getName());
+        System.out.println("参数 = " + JSON.toJSONString(joinPoint.getArgs()));
 
         DaoInterfaceBean daoInterfaceInfo = new DaoInterfaceBean();
         daoInterfaceInfo.setGenericClass(genericClazz);
@@ -62,6 +75,6 @@ public class DaoMethodInterceptor {
 
     @After(value = "daoMethod()")
     public void after() {
-daoInterfaceInfoThreadLocal.remove();
+        daoInterfaceInfoThreadLocal.remove();
     }
 }
