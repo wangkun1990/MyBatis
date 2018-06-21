@@ -36,4 +36,9 @@ public class DynamicEntityBean {
      * java对象主键字段
      */
     private String primaryKeyField;
+
+    /**
+     * insert语句用到的字段
+     */
+    private List<DynamicColumnBean> insertColumnsList;
 }
