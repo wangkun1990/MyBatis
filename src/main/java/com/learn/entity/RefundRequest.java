@@ -11,13 +11,13 @@
 package com.learn.entity;
 
 
-import com.learn.annotation.Table;
 
 import javax.persistence.Column;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 
-@Table("refund")
+@Table(name = "refund")
 public class RefundRequest implements Serializable {
     private String uuid;
     @Column(name = "store_type")
