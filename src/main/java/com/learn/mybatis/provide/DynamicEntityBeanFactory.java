@@ -31,6 +31,7 @@ public class DynamicEntityBeanFactory {
         DynamicEntityBean dynamicEntityBean = dynamicEntityBeanMap.get(genericClazz.getName());
         if (dynamicEntityBean == null) {
             dynamicEntityBean = new DynamicEntityBean();
+            // 获取实体类注解
             Table table = genericClazz.getAnnotation(Table.class);
             if (table != null) {
                 dynamicEntityBean.setTableName(table.name());
@@ -45,9 +46,13 @@ public class DynamicEntityBeanFactory {
             DynamicColumnBean dynamicColumnBean;
             for (Field field : fields) {
                 dynamicColumnBean = new DynamicColumnBean();
+                // 获取字段注解
                 Column column = field.getAnnotation(Column.class);
+                // 获取主键注解
                 Id id = field.getAnnotation(Id.class);
                 if (id != null && primaryKey) {
+                    dynamicColumnBean.setPrimaryKey(true);
+                    dynamicColumnBean.setNullable(false);
                     dynamicEntityBean.setPrimaryKeyField(field.getName());
                     if (column != null) {
                         dynamicColumnBean.setColumnName(column.name());
@@ -79,11 +84,21 @@ public class DynamicEntityBeanFactory {
         return dynamicEntityBean;
     }
 
-    private static String convertSelectColumns(List<String> dbColumns, List<String> javaFields) {
+    public static String convertSelectColumns(List<String> dbColumns, List<String> javaFields) {
+        checkSize(dbColumns, javaFields);
         StringBuilder select = new StringBuilder();
         for (int i = 0; i < dbColumns.size(); i++) {
             select.append(dbColumns.get(i)).append(" as ").append(javaFields.get(i)).append(", ");
         }
         return select.substring(0, select.lastIndexOf(","));
+    }
+
+    private static void checkSize(List<String> dbColumns, List<String> javaFields) {
+        if (dbColumns == null || javaFields == null) {
+            throw new IllegalArgumentException("");
+        }
+        if (dbColumns.size() != javaFields.size()) {
+            throw new IllegalArgumentException("size not same");
+        }
     }
 }
