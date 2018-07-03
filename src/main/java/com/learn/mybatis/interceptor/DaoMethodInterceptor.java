@@ -3,6 +3,8 @@ package com.learn.mybatis.interceptor;
 import com.alibaba.fastjson.JSON;
 import com.learn.mybatis.bean.DaoInterfaceBean;
 import com.learn.mybatis.bean.DynamicEntityBean;
+import com.learn.mybatis.util.AopTargetUtils;
+import org.apache.ibatis.binding.MapperProxy;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -52,8 +55,8 @@ public class DaoMethodInterceptor {
         Class<?>[] targetInterfaces = ClassUtils.getAllInterfacesForClass(clazz, clazz.getClassLoader());
         Class<?> mapperClazz = targetInterfaces[0];
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        System.out.println("method name = " + methodSignature.getName());
-        System.out.println("name space = " + mapperClazz.getName());
+        logger.info("method name = " + methodSignature.getName());
+        logger.info("name space = " + mapperClazz.getName());
 
 
         Type[] genType = mapperClazz.getGenericInterfaces();
@@ -62,8 +65,8 @@ public class DaoMethodInterceptor {
         // 这里约定，只取第一个继承的接口泛型。
         Type[] genericType = ((ParameterizedType) genType[0]).getActualTypeArguments();
         Class<?> genericClazz = (Class<?>) genericType[0];
-        System.out.println("泛型类型 = " + genericClazz.getName());
-        System.out.println("参数 = " + JSON.toJSONString(joinPoint.getArgs()));
+        logger.info("泛型类型 = " + genericClazz.getName());
+        logger.info("参数 = " + JSON.toJSONString(joinPoint.getArgs()));
 
         DaoInterfaceBean daoInterfaceInfo = new DaoInterfaceBean();
         daoInterfaceInfo.setGenericClass(genericClazz);
