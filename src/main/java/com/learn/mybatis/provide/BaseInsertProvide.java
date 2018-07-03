@@ -11,10 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.persistence.GenerationType;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class BaseInsertProvide {
 
@@ -36,61 +34,46 @@ public class BaseInsertProvide {
     }
 
     public String batchInsert(Map<?, ?> params) {
-        List<?> listParams = (List<?>) params.get("list");
         DaoInterfaceBean daoInterfaceInfo = DaoMethodInterceptor.getDaoInterfaceInfo();
         DynamicEntityBean dynamicEntityBean = DynamicEntityBeanFactory.getEntityBean(daoInterfaceInfo.getGenericClass());
-        List<String> dbColumns = dynamicEntityBean.getColumns();
+        List<DynamicColumnBean> dynamicColumnBeans = dynamicEntityBean.getInsertColumnsList();
+        removeAutoIncreseId(dynamicColumnBeans);
         StringBuilder sqlBuilder = new StringBuilder("insert into ").append(dynamicEntityBean.getTableName()).append(" (");
-        sqlBuilder.append(String.join(",", dbColumns)).append(")");
+        sqlBuilder.append(convertToInsertColumns(dynamicColumnBeans)).append(")");
         sqlBuilder.append(" values ");
 
-        List<String> values = new ArrayList<>();
-        for (Object object : listParams) {
-            values.add(builderValue(object, dynamicEntityBean.getFields()));
+        List<?> listParams = (List<?>) params.get("list");
+        //List<String> values = new ArrayList<>();
+        for (int i = 0; i < listParams.size(); i++) {
+            sqlBuilder.append("(");
+            for (int j = 0, length = dynamicColumnBeans.size(); j < length; j++) {
+                sqlBuilder.append("#{list[").append(i).append("].").append(dynamicColumnBeans.get(j).getFieldName()).append("}");
+                if (j != length - 1) {
+                    sqlBuilder.append(",");
+                }
+            }
+            sqlBuilder.append(")");
+            if (i < listParams.size() - 1) {
+                sqlBuilder.append(",");
+            }
         }
-
-        sqlBuilder.append(String.join(",", values));
-
-
         logger.info("batchInsert sql = {}", sqlBuilder);
         return sqlBuilder.toString();
     }
 
-    private String builderValue(Object object, List<String> javaFields) {
-        StringBuilder valueBuilder = new StringBuilder("(");
-        Field[] fields = object.getClass().getDeclaredFields();
-        for (int i = 0; i < javaFields.size(); i++) {
-            for (Field field : fields) {
-                if (field.getName().equals(javaFields.get(i))) {
-                    field.setAccessible(true);
-                    try {
-                        Object value = field.get(object);
-                        if (ReflectionUtil.isPrimaryKey(field)) {
-                            if (value == null) {
-                                if (field.getGenericType().getTypeName().equals(String.class.getName())) {
-                                    value = UUID.randomUUID().toString().replace("-", "");
-                                    valueBuilder.append("'").append(value).append("'").append(",");
-                                } else if (field.getGenericType().getTypeName().equals(Integer.class.getName())) {
-                                    value = 0;
-                                    valueBuilder.append(value).append(",");
-                                }
-                            }
 
-                        } else {
-                            if (value instanceof Integer) {
-                                valueBuilder.append(value).append(",");
-                            } else if (value instanceof String) {
-                                valueBuilder.append("'").append(value).append("'").append(",");
-                            }
-                        }
-
-                    } catch (IllegalAccessException e) {
-
-                    }
-                }
+    private void removeAutoIncreseId(List<DynamicColumnBean> dynamicColumnBeans) {
+        Iterator<DynamicColumnBean> iterator = dynamicColumnBeans.iterator();
+        while (iterator.hasNext()) {
+            DynamicColumnBean dynamicColumnBean = iterator.next();
+            if (dynamicColumnBean.isPrimaryKey() && dynamicColumnBean.getGenerationType().equals(GenerationType.AUTO)) {
+                iterator.remove();
             }
         }
-        return valueBuilder.substring(0, valueBuilder.lastIndexOf(",")) + ")";
     }
 
+    private String convertToInsertColumns(List<DynamicColumnBean> dynamicColumnBeans) {
+        List<String> columns = dynamicColumnBeans.stream().map(DynamicColumnBean::getColumnName).collect(Collectors.toList());
+        return String.join(",", columns);
+    }
 }

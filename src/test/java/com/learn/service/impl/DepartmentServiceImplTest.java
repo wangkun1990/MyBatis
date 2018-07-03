@@ -81,7 +81,19 @@ public class DepartmentServiceImplTest {
         department.setId(4);
         department.setName("中文系");
         departments.add(department);
+        department = new Department();
+        department.setId(5);
+        department.setName("化学系");
+        departments.add(department);
         int rows = departmentMapper.batchInsert(departments);
         logger.info("rows = " + rows);
+    }
+
+    @Test
+    public void insert() {
+        Department department = new Department();
+        department.setName("计算机系");
+        departmentMapper.insert(department);
+        System.out.println("id = " + department.getId());
     }
 }
