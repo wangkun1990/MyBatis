@@ -37,8 +37,7 @@ public class BaseUpdateProvide {
      * @return
      */
     private static String getUpdateSql(Object object, boolean updateAllColumns) {
-        DaoInterfaceBean daoInterfaceInfo = DaoMethodInterceptor.getDaoInterfaceInfo();
-        DynamicEntityBean dynamicEntityBean = DynamicEntityBeanFactory.getEntityBean(daoInterfaceInfo.getGenericClass());
+        DynamicEntityBean dynamicEntityBean = DynamicEntityBeanFactory.getEntityBean();
         SQL updateSql = new SQL().UPDATE(dynamicEntityBean.getTableName());
         List<DynamicColumnBean> dynamicColumnBeans = dynamicEntityBean.getUpdateColumnsList();
         for (DynamicColumnBean dynamicColumnBean : dynamicColumnBeans) {

@@ -12,8 +12,7 @@ public class BaseDeleteProvide {
     private static Logger logger = LoggerFactory.getLogger(BaseDeleteProvide.class);
 
     public static String deleteByPrimary() {
-        DaoInterfaceBean daoInterfaceInfo = DaoMethodInterceptor.getDaoInterfaceInfo();
-        DynamicEntityBean dynamicEntityBean = DynamicEntityBeanFactory.getEntityBean(daoInterfaceInfo.getGenericClass());
+        DynamicEntityBean dynamicEntityBean = DynamicEntityBeanFactory.getEntityBean();
         SQL deleteSql = new SQL().DELETE_FROM(dynamicEntityBean.getTableName())
                 .WHERE(dynamicEntityBean.getPrimaryKeyColumn() + " = " + "#{id}");
         logger.info("deleteByPrimary sq; = {}", deleteSql);

@@ -1,7 +1,9 @@
 package com.learn.mybatis.provide;
 
+import com.learn.mybatis.bean.DaoInterfaceBean;
 import com.learn.mybatis.bean.DynamicColumnBean;
 import com.learn.mybatis.bean.DynamicEntityBean;
+import com.learn.mybatis.interceptor.DaoMethodInterceptor;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.Column;
@@ -24,10 +26,11 @@ public class DynamicEntityBeanFactory {
 
     /**
      *
-     * @param genericClazz 泛型class
      * @return
      */
-    public static DynamicEntityBean getEntityBean(Class<?> genericClazz) {
+    public static DynamicEntityBean getEntityBean() {
+        DaoInterfaceBean daoInterfaceInfo = DaoMethodInterceptor.getDaoInterfaceInfo();
+        Class<?> genericClazz = daoInterfaceInfo.getGenericClass();
         DynamicEntityBean dynamicEntityBean = dynamicEntityBeanMap.get(genericClazz.getName());
         if (dynamicEntityBean == null) {
             dynamicEntityBean = new DynamicEntityBean();
@@ -42,6 +45,7 @@ public class DynamicEntityBeanFactory {
             List<String> dbColumns = new ArrayList<>();
             List<DynamicColumnBean> insertDynamicColumnBeans = new ArrayList<>();
             List<DynamicColumnBean> updateDynamicColumnBeans = new ArrayList<>();
+            List<DynamicColumnBean> allDynamicColumnBeans = new ArrayList<>();
             Field[] fields = genericClazz.getDeclaredFields();
             boolean primaryKey = true;
             DynamicColumnBean dynamicColumnBean;
@@ -82,9 +86,11 @@ public class DynamicEntityBeanFactory {
                     updateDynamicColumnBeans.add(dynamicColumnBean);
                 }
                 insertDynamicColumnBeans.add(dynamicColumnBean);
+                allDynamicColumnBeans.add(dynamicColumnBean);
             }
             dynamicEntityBean.setInsertColumnsList(insertDynamicColumnBeans);
             dynamicEntityBean.setUpdateColumnsList(updateDynamicColumnBeans);
+            dynamicEntityBean.setAllColumnsList(allDynamicColumnBeans);
             dynamicEntityBean.setFields(javaFields);
             dynamicEntityBean.setColumns(dbColumns);
             dynamicEntityBean.setSelectColumns(convertSelectColumns(dbColumns, javaFields));

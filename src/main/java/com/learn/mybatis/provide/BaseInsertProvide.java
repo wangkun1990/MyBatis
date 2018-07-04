@@ -20,8 +20,7 @@ public class BaseInsertProvide {
 
 
     public String insert(Object object) {
-        DaoInterfaceBean daoInterfaceInfo = DaoMethodInterceptor.getDaoInterfaceInfo();
-        DynamicEntityBean dynamicEntityBean = DynamicEntityBeanFactory.getEntityBean(daoInterfaceInfo.getGenericClass());
+        DynamicEntityBean dynamicEntityBean = DynamicEntityBeanFactory.getEntityBean();
         SQL insertSql = new SQL().INSERT_INTO(dynamicEntityBean.getTableName());
         for (DynamicColumnBean dynamicColumnBean : dynamicEntityBean.getInsertColumnsList()) {
             if (dynamicColumnBean.isPrimaryKey() && dynamicColumnBean.getGenerationType().equals(GenerationType.AUTO)) {
@@ -34,8 +33,7 @@ public class BaseInsertProvide {
     }
 
     public String batchInsert(Map<?, ?> params) {
-        DaoInterfaceBean daoInterfaceInfo = DaoMethodInterceptor.getDaoInterfaceInfo();
-        DynamicEntityBean dynamicEntityBean = DynamicEntityBeanFactory.getEntityBean(daoInterfaceInfo.getGenericClass());
+        DynamicEntityBean dynamicEntityBean = DynamicEntityBeanFactory.getEntityBean();
         List<DynamicColumnBean> dynamicColumnBeans = dynamicEntityBean.getInsertColumnsList();
         removeAutoIncreseId(dynamicColumnBeans);
         StringBuilder sqlBuilder = new StringBuilder("insert into ").append(dynamicEntityBean.getTableName()).append(" (");
