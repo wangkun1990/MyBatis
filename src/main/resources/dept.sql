@@ -1,8 +1,8 @@
 
-create table `dept` (
-	`department_id` int (11),
-	`name` varchar (765)，
-	primary key (department_id)
-); 
-insert into `dept` (`department_id`, `name`) values('1','计算机');
-insert into `dept` (`department_id`, `name`) values('2','文学院');
+CREATE TABLE `dept` (
+  `department_id` INT(10) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(50) NOT NULL,
+  create_date DATETIME NOT NULL DEFAULT NOW(),
+  update_date DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (`department_id`)
+) ENGINE=INNODB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8

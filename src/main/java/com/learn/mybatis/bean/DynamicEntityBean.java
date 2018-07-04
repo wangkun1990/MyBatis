@@ -41,4 +41,9 @@ public class DynamicEntityBean {
      * insert语句用到的字段
      */
     private List<DynamicColumnBean> insertColumnsList;
+
+    /**
+     * 更新sql用到的字段
+     */
+    private List<DynamicColumnBean> updateColumnsList;
 }

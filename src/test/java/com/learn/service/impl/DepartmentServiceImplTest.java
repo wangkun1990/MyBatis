@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -51,7 +52,6 @@ public class DepartmentServiceImplTest {
     public void updateNotNullColumnsByPrimary() {
         Department department = new Department();
         department.setId(1);
-        //department.setSex("男");
         department.setName("物理系");
         int rows = departmentMapper.updateNotNullColumnsByPrimary(department);
         logger.info("rows = " + rows);
@@ -74,16 +74,20 @@ public class DepartmentServiceImplTest {
     public void batchInsert() {
         List<Department> departments = new ArrayList<>();
         Department department = new Department();
-        department.setId(3);
         department.setName("计算机系");
+        Date date = new Date();
+        department.setCreateDate(date);
+        department.setUpdateDate(date);
         departments.add(department);
         department = new Department();
-        department.setId(4);
         department.setName("中文系");
+        department.setCreateDate(date);
+        department.setUpdateDate(date);
         departments.add(department);
         department = new Department();
-        department.setId(5);
         department.setName("化学系");
+        department.setCreateDate(date);
+        department.setUpdateDate(date);
         departments.add(department);
         int rows = departmentMapper.batchInsert(departments);
         logger.info("rows = " + rows);
@@ -93,6 +97,9 @@ public class DepartmentServiceImplTest {
     public void insert() {
         Department department = new Department();
         department.setName("计算机系");
+        Date date = new Date();
+        department.setCreateDate(date);
+        department.setUpdateDate(date);
         departmentMapper.insert(department);
         System.out.println("id = " + department.getId());
     }

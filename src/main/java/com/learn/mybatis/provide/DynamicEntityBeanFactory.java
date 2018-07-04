@@ -40,42 +40,51 @@ public class DynamicEntityBeanFactory {
             }
             List<String> javaFields = new ArrayList<>();
             List<String> dbColumns = new ArrayList<>();
-            List<DynamicColumnBean> dynamicColumnBeans = new ArrayList<>();
+            List<DynamicColumnBean> insertDynamicColumnBeans = new ArrayList<>();
+            List<DynamicColumnBean> updateDynamicColumnBeans = new ArrayList<>();
             Field[] fields = genericClazz.getDeclaredFields();
             boolean primaryKey = true;
             DynamicColumnBean dynamicColumnBean;
             for (Field field : fields) {
                 dynamicColumnBean = new DynamicColumnBean();
+                dynamicColumnBean.setFieldName(field.getName());
+                dynamicColumnBean.setJavaType(field.getType());
+                javaFields.add(field.getName());
                 // 获取字段注解
                 Column column = field.getAnnotation(Column.class);
                 // 获取主键注解
                 Id id = field.getAnnotation(Id.class);
                 if (id != null && primaryKey) {
+                    // 处理主键字段
                     dynamicColumnBean.setPrimaryKey(true);
                     dynamicColumnBean.setNullable(false);
+                    dynamicColumnBean.setUpdatable(false);
                     dynamicEntityBean.setPrimaryKeyField(field.getName());
-                    if (column != null) {
+                    if (column != null && StringUtils.isNotBlank(column.name())) {
+                        dbColumns.add(column.name());
                         dynamicColumnBean.setColumnName(column.name());
                         dynamicEntityBean.setPrimaryKeyColumn(column.name());
                     } else {
                         dynamicColumnBean.setColumnName(field.getName());
+                        dbColumns.add(field.getName());
                         dynamicEntityBean.setPrimaryKeyColumn(field.getName());
                     }
                     primaryKey = false;
-                }
-                dynamicColumnBean.setFieldName(field.getName());
-                dynamicColumnBean.setJavaType(field.getType());
-                javaFields.add(field.getName());
-                if (column != null && StringUtils.isNotBlank(column.name())) {
-                    dbColumns.add(column.name());
-                    dynamicColumnBean.setColumnName(column.name());
                 } else {
-                    dynamicColumnBean.setColumnName(field.getName());
-                    dbColumns.add(field.getName());
+                    // 非主键字段
+                    if (column != null && StringUtils.isNotBlank(column.name())) {
+                        dbColumns.add(column.name());
+                        dynamicColumnBean.setColumnName(column.name());
+                    } else {
+                        dynamicColumnBean.setColumnName(field.getName());
+                        dbColumns.add(field.getName());
+                    }
+                    updateDynamicColumnBeans.add(dynamicColumnBean);
                 }
-                dynamicColumnBeans.add(dynamicColumnBean);
+                insertDynamicColumnBeans.add(dynamicColumnBean);
             }
-            dynamicEntityBean.setInsertColumnsList(dynamicColumnBeans);
+            dynamicEntityBean.setInsertColumnsList(insertDynamicColumnBeans);
+            dynamicEntityBean.setUpdateColumnsList(updateDynamicColumnBeans);
             dynamicEntityBean.setFields(javaFields);
             dynamicEntityBean.setColumns(dbColumns);
             dynamicEntityBean.setSelectColumns(convertSelectColumns(dbColumns, javaFields));
