@@ -1,4 +1,4 @@
-package com.learn.mybatis.tool;
+package com.learn.mybatis.mapper;
 
 import com.learn.mybatis.provide.BaseDeleteProvide;
 import org.apache.ibatis.annotations.DeleteProvider;

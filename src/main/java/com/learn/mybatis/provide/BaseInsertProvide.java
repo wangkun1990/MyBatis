@@ -1,17 +1,15 @@
 package com.learn.mybatis.provide;
 
-import com.learn.mybatis.bean.DaoInterfaceBean;
 import com.learn.mybatis.bean.DynamicColumnBean;
 import com.learn.mybatis.bean.DynamicEntityBean;
-import com.learn.mybatis.interceptor.DaoMethodInterceptor;
-import com.learn.mybatis.tool.ReflectionUtil;
 import org.apache.ibatis.jdbc.SQL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.GenerationType;
-import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class BaseInsertProvide {

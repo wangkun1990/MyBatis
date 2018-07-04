@@ -1,4 +1,4 @@
-package com.learn.mybatis.tool;
+package com.learn.mybatis.mapper;
 
 import com.learn.mybatis.provide.BaseUpdateProvide;
 import org.apache.ibatis.annotations.UpdateProvider;

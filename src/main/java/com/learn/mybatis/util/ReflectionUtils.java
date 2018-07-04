@@ -1,11 +1,11 @@
-package com.learn.mybatis.tool;
+package com.learn.mybatis.util;
 
 import javax.persistence.Id;
 import java.lang.reflect.Field;
 
-public class ReflectionUtil {
+public class ReflectionUtils {
 
-    private ReflectionUtil() {
+    private ReflectionUtils() {
 
     }
 

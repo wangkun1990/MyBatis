@@ -1,8 +1,7 @@
-package com.learn.mybatis.tool;
+package com.learn.mybatis.mapper;
 
 import com.learn.mybatis.provide.BaseInsertProvide;
 import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
