@@ -15,6 +15,9 @@ public class BeanUtils {
      * @return
      */
     public static Object getPropertyValue(Object object, String fieldName) {
+        if (object == null) {
+            return null;
+        }
         Field[] fields = object.getClass().getDeclaredFields();
         Field field = null;
         for (Field f : fields) {
