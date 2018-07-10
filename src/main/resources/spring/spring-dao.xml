@@ -51,6 +51,8 @@
 
         <!-- 配置监控统计拦截的filters -->
         <property name="filters" value="stat"/>
+        <!--记录慢sql-->
+        <property name="connectionProperties" value="druid.stat.slowSqlMillis=5000"/>
     </bean>
 
     <!-- 配置SqlSessionFactory对象 -->
