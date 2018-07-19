@@ -55,7 +55,7 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public void delete(int id) {
-        studentMapper.delete(id);
+        studentMapper.deleteByPrimary(id);
     }
 
     /**
@@ -106,7 +106,7 @@ public class StudentServiceImpl implements IStudentService {
 
     private void privateAddStudent(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     /**
@@ -126,7 +126,7 @@ public class StudentServiceImpl implements IStudentService {
     @Transactional
     public void insertAndDeleteInner(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     /**
@@ -171,7 +171,7 @@ public class StudentServiceImpl implements IStudentService {
     @Transactional
     void addStuWithTransaction(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     @Override
@@ -187,14 +187,14 @@ public class StudentServiceImpl implements IStudentService {
     @Transactional
     public void publicTransaction(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     @Transactional
     @Override
     public void addAndDel(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     /**
@@ -209,7 +209,7 @@ public class StudentServiceImpl implements IStudentService {
     @Transactional
     public void addAndDelete(Student student) {
         addWithPrivate(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     private void addWithPrivate(Student student) {
