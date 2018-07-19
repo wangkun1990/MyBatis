@@ -8,6 +8,7 @@ import com.learn.service.inner.IStudentService2;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -200,6 +201,7 @@ public class StudentServiceImpl implements IStudentService {
      * 事务生效
      * @param student
      */
+    @Override
     public void addAndDeleteWithoutTransaction(Student student) {
         self.addAndDelete(student);
     }

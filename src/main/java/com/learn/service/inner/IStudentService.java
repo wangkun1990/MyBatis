@@ -10,42 +10,41 @@ import java.util.List;
  */
 public interface IStudentService {
 
-    public Student getStudentById(int id);
+    Student getStudentById(int id);
 
-    public Student2 getStudent2ById(int id);
+    Student2 getStudent2ById(int id);
 
-    public int insertStudent(Student student);
+    int insertStudent(Student student);
 
-    public List<Student> getAllStudents();
+    List<Student> getAllStudents();
 
-    public void insertAndDelete(Student student);
+    void insertAndDelete(Student student);
 
-    public void delete(int id);
+    void delete(int id);
 
-    public void insertAndDeleteWithoutTransaction(Student student);
+    void insertAndDeleteWithoutTransaction(Student student);
 
-    public void insertAndDeleteWithTransaction(Student student);
+    void insertAndDeleteWithTransaction(Student student);
 
-    public void insertAndDeleteWithTransaction1(Student student);
+    void insertAndDeleteWithTransaction1(Student student);
 
-    public void addStudent(Student student);
+    void addStudent(Student student);
 
-    public void addStudent1(Student student);
+    void addStudent1(Student student);
 
-    public void addStudent2(Student student);
+    void addStudent2(Student student);
 
-    public void addStudent3(Student student);
+    void addStudent3(Student student);
 
-    public void addStudent4(Student student);
+    void addStudent4(Student student);
 
-    public void addStudent5(Student student);
+    void addStudent5(Student student);
 
-    public void addStudent6(Student student);
+    void addStudent6(Student student);
 
-    public void addStudent7(Student student);
+    void addStudent7(Student student);
 
-
-    public void addAndDel(Student student);
+    void addAndDel(Student student);
 
     void addAndDeleteWithoutTransaction(Student student);
 }
