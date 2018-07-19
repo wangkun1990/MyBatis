@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by wangkun on 2017/4/16.
+ * @author kun.wang
  */
 @Table(name = "dept")
 @Data
@@ -27,7 +27,5 @@ public class Department implements Serializable {
 
     @Column(name = "update_date")
     private Date updateDate;
-
-    //private String sex;
 
 }
