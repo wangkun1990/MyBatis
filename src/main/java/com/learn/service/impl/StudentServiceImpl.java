@@ -27,7 +27,7 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public Student getStudentById(int id) {
-        System.err.println(StudentUtils.getStudent(id));
+        //System.err.println(StudentUtils.getStudent(id));
         return studentMapper.getStudentById(id);
     }
 
@@ -126,7 +126,7 @@ public class StudentServiceImpl implements IStudentService {
     @Transactional
     public void insertAndDeleteInner(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.deleteByPrimary(student.getId());
+        studentMapper.delete(student.getId());
     }
 
     /**

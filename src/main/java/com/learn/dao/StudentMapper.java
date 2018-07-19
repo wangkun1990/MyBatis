@@ -19,4 +19,6 @@ public interface StudentMapper extends BaseMapper<Student> {
 
     List<Student> getAllStudents();
 
+    int delete(Integer id);
+
 }
