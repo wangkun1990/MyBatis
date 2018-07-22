@@ -1,10 +1,10 @@
 
-create table `student` (
-	`stu_id` int (10),
-	`name` varchar (765),
-	`dep_id` int (11),
-	`sex` char (3),
-	primary key (stu_id),
+CREATE TABLE student (
+	`stu_id` INT (10) NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR (50) NOT NULL,
+	`dep_id` INT (10) NOT NULL,
+	`sex` CHAR (1) NOT NULL,
+	PRIMARY KEY (stu_id),
 	FOREIGN KEY (dep_id) REFERENCES dept(department_id)
 ); 
 insert into `student` (`stu_id`, `name`, `dep_id`, `sex`) values('1','张三','1','1');
