@@ -16,6 +16,6 @@ public class StudentUtils {
     }
 
     public static Student getStudent(int id) {
-        return staticStudentMapper.getStudentById(id);
+        return staticStudentMapper.selectByPrimaryKey(id);
     }
 }

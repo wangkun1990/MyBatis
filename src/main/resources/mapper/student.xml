@@ -6,8 +6,8 @@
         <id column="stu_id" property="id"/>
         <result column="name" property="name"/>
         <result column="sex" property="sex" typeHandler="com.learn.common.SexEnumHandler" />
-        <association column="dep_id" property="department" javaType="com.learn.entity.Department" fetchType="eager"
-                     select="com.learn.dao.DepartmentMapper.getDepartmentById">
+        <association column="dep_id" property="department" javaType="com.learn.entity.Department" fetchType="lazy"
+                     select="com.learn.dao.DepartmentMapper.selectByPrimaryKey">
         </association>
     </resultMap>
     <select id="getStudentById" resultMap="student">

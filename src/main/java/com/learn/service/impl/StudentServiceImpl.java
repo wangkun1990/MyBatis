@@ -8,6 +8,7 @@ import com.learn.service.inner.IStudentService2;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public Student getStudentById(int id) {
-        System.err.println(StudentUtils.getStudent(id));
+        //System.err.println(StudentUtils.getStudent(id));
         return studentMapper.getStudentById(id);
     }
 
@@ -54,7 +55,7 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public void delete(int id) {
-        studentMapper.delete(id);
+        studentMapper.deleteByPrimary(id);
     }
 
     /**
@@ -105,7 +106,7 @@ public class StudentServiceImpl implements IStudentService {
 
     private void privateAddStudent(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     /**
@@ -170,7 +171,7 @@ public class StudentServiceImpl implements IStudentService {
     @Transactional
     void addStuWithTransaction(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     @Override
@@ -186,20 +187,21 @@ public class StudentServiceImpl implements IStudentService {
     @Transactional
     public void publicTransaction(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     @Transactional
     @Override
     public void addAndDel(Student student) {
         studentMapper.insertStudent(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     /**
      * 事务生效
      * @param student
      */
+    @Override
     public void addAndDeleteWithoutTransaction(Student student) {
         self.addAndDelete(student);
     }
@@ -207,7 +209,7 @@ public class StudentServiceImpl implements IStudentService {
     @Transactional
     public void addAndDelete(Student student) {
         addWithPrivate(student);
-        studentMapper.delete(student.getId());
+        studentMapper.deleteByPrimary(student.getId());
     }
 
     private void addWithPrivate(Student student) {

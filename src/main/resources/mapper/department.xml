@@ -3,7 +3,7 @@
 <mapper namespace="com.learn.dao.DepartmentMapper">
 
     <select id="getDepartmentById" resultType="com.learn.entity.Department">
-        select department_id as id, name
+        select department_id as id, name, create_date, update_date
         from dept
         WHERE department_id = #{id}
     </select>
