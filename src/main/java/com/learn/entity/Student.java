@@ -17,6 +17,8 @@ public class Student implements Serializable {
 
     private String sex;
 
+    private Integer depId;
+
     @Column(name = "dep_id")
     private Department department;
 

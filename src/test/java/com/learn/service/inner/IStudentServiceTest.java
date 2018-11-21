@@ -127,4 +127,13 @@ public class IStudentServiceTest {
     public void addStudent8() {
         studentService.addStudent8(assembleStudent());
     }
+
+    @Test
+    public void getMapper3AllStudents() {
+        List<Student> students = studentService.getMapper3AllStudents();
+        System.out.println(students);
+
+        students = studentService.getMapper3AllStudents1();
+        System.out.println(students);
+    }
 }

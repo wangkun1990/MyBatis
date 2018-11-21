@@ -50,4 +50,7 @@ public interface IStudentService {
 
     void addStudent8(Student student);
 
+    List<Student> getMapper3AllStudents();
+
+    List<Student> getMapper3AllStudents1();
 }

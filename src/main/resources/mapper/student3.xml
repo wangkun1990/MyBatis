@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.dao.StudentMapper3">
+
+    <resultMap id="studentMap" type="com.learn.entity.Student">
+        <id column="stu_id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex" typeHandler="com.learn.common.SexEnumHandler"/>
+    </resultMap>
+
+    <select id="getAllStudents" resultMap="studentMap">
+        SELECT stu_id, name ,sex
+        FROM student
+    </select>
+
+    <select id="getAllStudents1" resultType="com.learn.entity.Student">
+        SELECT stu_id, name ,sex, dep_id
+        FROM student
+    </select>
+</mapper>

@@ -1,6 +1,7 @@
 package com.learn.service.impl;
 
 import com.learn.dao.StudentMapper;
+import com.learn.dao.StudentMapper3;
 import com.learn.entity.Student;
 import com.learn.entity.Student2;
 import com.learn.service.inner.IStudentService;
@@ -24,6 +25,9 @@ public class StudentServiceImpl implements IStudentService {
 
     @Resource
     private IStudentService2 studentService2;
+
+    @Resource
+    private StudentMapper3 studentMapper3;
 
     @Override
     public Student getStudentById(int id) {
@@ -223,5 +227,15 @@ public class StudentServiceImpl implements IStudentService {
     @Override
     public void addStudent8(Student student) {
         studentService2.addStudentAndDelete(student);
+    }
+
+    @Override
+    public List<Student> getMapper3AllStudents() {
+        return studentMapper3.getAllStudents();
+    }
+
+    @Override
+    public List<Student> getMapper3AllStudents1() {
+        return studentMapper3.getAllStudents1();
     }
 }
