@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by wangkun on 2017/4/16.
@@ -101,7 +102,7 @@ public class IStudentServiceTest {
         Department department = new Department();
         department.setId(2);
         student.setDepartment(department);
-        student.setName("侯亮平");
+        student.setName("tom");
         student.setSex("0");
         return student;
     }
@@ -120,5 +121,10 @@ public class IStudentServiceTest {
     @Test
     public void testAddAndDeleteWithoutTransaction() {
         studentService.addAndDeleteWithoutTransaction(assembleStudent());
+    }
+
+    @Test
+    public void addStudent8() {
+        studentService.addStudent8(assembleStudent());
     }
 }

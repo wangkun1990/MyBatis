@@ -47,4 +47,7 @@ public interface IStudentService {
     void addAndDel(Student student);
 
     void addAndDeleteWithoutTransaction(Student student);
+
+    void addStudent8(Student student);
+
 }

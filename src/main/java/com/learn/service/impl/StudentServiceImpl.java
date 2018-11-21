@@ -215,4 +215,13 @@ public class StudentServiceImpl implements IStudentService {
     private void addWithPrivate(Student student) {
         studentService2.addStudent(student);
     }
+
+    /**
+     * studentService2.addStudentAndDelete带有事务，事务生效
+     * @param student
+     */
+    @Override
+    public void addStudent8(Student student) {
+        studentService2.addStudentAndDelete(student);
+    }
 }
