@@ -2,6 +2,7 @@ package com.learn.method.support;
 
 import com.alibaba.fastjson.JSON;
 import com.learn.method.support.annotation.RequestParam;
+import com.learn.tools.ValidationUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServletServerHttpRequest;
@@ -39,9 +40,8 @@ public class RequestParamHandlerResolver implements HandlerMethodArgumentResolve
 
         // 校验入参
         if (requestParam.validate()) {
-
+            ValidationUtils.validate(paramObj);
         }
-
         return paramObj;
     }
 }
