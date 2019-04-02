@@ -205,11 +205,20 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.3</version>
         </dependency>
+        <!--性能不如orika-->
         <dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
             <version>5.5.1</version>
         </dependency>
+
+        <!--不支持list to list-->
+        <dependency>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
+            <version>6.4.1</version>
+        </dependency>
+
         <!--性能比1.4.2版本提升一倍-->
         <dependency>
             <groupId>ma.glasnost.orika</groupId>

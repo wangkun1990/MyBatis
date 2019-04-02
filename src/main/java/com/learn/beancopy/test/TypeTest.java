@@ -5,6 +5,7 @@ import com.learn.beancopy.source.TypeA;
 import com.learn.tools.OrikaMapperUtil;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TypeTest {
@@ -12,8 +13,19 @@ public class TypeTest {
         TypeA typeA = new TypeA();
         typeA.setId("11");
         typeA.setUid(11);
+        //typeA.setDate("2019-04-02");
+        typeA.setDate1(new Date());
+        typeA.setDate2(System.currentTimeMillis());
 
         System.out.println(OrikaMapperUtil.map(typeA, TypeB.class));
+
+        /*TypeB typeB = new TypeB();
+        typeB.setDate(new Date());
+        typeB.setDate1("2017-08-01");
+        typeB.setDate2(new Date());
+        typeB.setId(123);
+        typeB.setUid("456");
+        System.out.println(OrikaMapperUtil.map(typeB, TypeA.class));*/
 
         List<TypeA> typeAList = new ArrayList<>();
         TypeA typeA1 = new TypeA();
