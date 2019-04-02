@@ -4,19 +4,13 @@ import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 
-import java.util.Iterator;
 import java.util.List;
 
-public class OrikaMapperUtil {
+public abstract class OrikaMapperUtil {
 
-    private OrikaMapperUtil() {
-
-    }
-
-    private static MapperFactory mapperFactory;
     private static MapperFacade mapperFacade;
     static {
-        mapperFactory = new DefaultMapperFactory.Builder().build();
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
         mapperFacade = mapperFactory.getMapperFacade();
     }
 
