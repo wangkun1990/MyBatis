@@ -210,10 +210,11 @@
             <artifactId>dozer</artifactId>
             <version>5.5.1</version>
         </dependency>
+        <!--性能比1.4.2版本提升一倍-->
         <dependency>
             <groupId>ma.glasnost.orika</groupId>
             <artifactId>orika-core</artifactId>
-            <version>1.4.2</version>
+            <version>1.5.4</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.jmapper-framework</groupId>
